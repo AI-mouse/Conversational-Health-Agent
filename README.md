@@ -15,9 +15,10 @@ pip install '.[all]'
 export OPENAI_API_KEY="api-key"  
 6006port: https://u359324-98fe-51c16d33.bjb1.seetacloud.com:8443  
 
-取消设置代理指令：unset HTTP_PROXY HTTPS_PROXY ALL_PROXY
-unset http_proxy
-unset https_proxy
+取消设置代理指令：  
+unset HTTP_PROXY HTTPS_PROXY ALL_PROXY  
+unset http_proxy  
+unset https_proxy  
 ===========
 * [Documentation page](https://docs.opencha.com)
 * [User Guide](https://docs.opencha.com/user_guide/index.html)
