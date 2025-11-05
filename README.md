@@ -1,6 +1,6 @@
 Quick Start
-大虚拟环境名称: cha
-python虚拟环境名称: venv
+大虚拟环境名称: cha  
+python虚拟环境名称: venv  
 
 conda create -n cha python=3.10
 conda activate cha
