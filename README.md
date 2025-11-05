@@ -20,6 +20,30 @@ export OPENAI_API_KEY="api-key"
 unset HTTP_PROXY HTTPS_PROXY ALL_PROXY  
 unset http_proxy  
 unset https_proxy  
+
+修改完端口问题以外还要处理open ai apikey无法使用的问题（一直无法连接）
+使用中转api并修改代码：openai.py中的‘class OpenAILLM(BaseLLM):’，使其可以使用中转，这要就无需使用各个vpn节点来回切换了。
+参考一下方法：
+from openai import OpenAI
+
+client = OpenAI(
+    api_key = "本平台生成的key",
+    base_url = "https://ai.nengyongai.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[
+        {"role": "user", "content": "你好"}
+    ],
+    stream=True
+)
+
+for chunk in response:
+    if chunk.choices:
+        print(chunk.choices[0].delta.content, end="", flush=True)
+
+
 ===========
 * [Documentation page](https://docs.opencha.com)
 * [User Guide](https://docs.opencha.com/user_guide/index.html)
