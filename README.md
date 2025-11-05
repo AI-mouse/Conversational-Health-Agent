@@ -1,4 +1,26 @@
 Quick Start
+原来的quick start并不好用，摸索出来下面的指令：
+大虚拟环境名称: cha
+python虚拟环境名称: venv
+
+conda create -n cha python=3.10
+conda activate cha
+cd CHA
+python -m venv ./venv
+source venv/bin/activate
+git clone -b ppg_hrv https://github.com/Institute4FutureHealth/CHA.git
+cd CHA
+pip install .
+pip install '.[all]'
+
+export OPENAI_API_KEY="sk-abcdef1234567890abcdef1234567890abcdef12"
+6006port: https://u359324-98fe-51c16d33.bjb1.seetacloud.com:8443
+
+取消设置代理指令：unset HTTP_PROXY HTTPS_PROXY ALL_PROXY
+ unset http_proxy
+unset https_proxy
+
+
 ===========
 * [Documentation page](https://docs.opencha.com)
 * [User Guide](https://docs.opencha.com/user_guide/index.html)
