@@ -26,7 +26,6 @@ unset https_proxy
 使用中转api并修改代码：openai.py中的‘class OpenAILLM(BaseLLM):’，使其可以使用中转，这要就无需使用各个vpn节点来回切换了。具体方法可以去看下自己写的博客。  
 
 参考一下方法：  
-bash
 ```
 from openai import OpenAI
 
