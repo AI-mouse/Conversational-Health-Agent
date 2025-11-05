@@ -8,7 +8,8 @@ conda activate cha
 cd CHA  
 python -m venv ./venv  
 source venv/bin/activate  
-git clone -b ppg_hrv https://github.com/Institute4FutureHealth/CHA.git(以其中的ppg_hrv分支为例，后续的一些指令还要看下面原本的quick start去适配main分支的)  
+(以其中的ppg_hrv分支为例，后续的一些指令还要看下面原本的quick start去适配main分支的)  
+git clone -b ppg_hrv https://github.com/Institute4FutureHealth/CHA.git  
 cd CHA  
 pip install .  
 pip install '.[all]'  
@@ -65,6 +66,8 @@ Now, install the CHA package.
 ```bash
 pip install openCHA
 playwright install
+这里每次直接安装playwright都会出现问题，需要安装额外的依赖：
+playwright install-deps
 ```
 
 Manual Installation
