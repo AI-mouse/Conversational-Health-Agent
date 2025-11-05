@@ -8,7 +8,7 @@ conda activate cha
 cd CHA  
 python -m venv ./venv  
 source venv/bin/activate  
-git clone -b ppg_hrv https://github.com/Institute4FutureHealth/CHA.git  
+git clone -b ppg_hrv https://github.com/Institute4FutureHealth/CHA.git(以其中的ppg_hrv分支为例，后续的一些指令还要看下面原本的quick start去适配main分支的)  
 cd CHA  
 pip install .  
 pip install '.[all]'  
