@@ -22,10 +22,12 @@ unset HTTP_PROXY HTTPS_PROXY ALL_PROXY
 unset http_proxy  
 unset https_proxy  
 
-修改完端口问题以外还要处理open ai apikey无法使用的问题（一直无法连接）
+修改完端口问题以外还要处理open ai apikey无法使用的问题（一直无法连接）  
 使用中转api并修改代码：openai.py中的‘class OpenAILLM(BaseLLM):’，使其可以使用中转，这要就无需使用各个vpn节点来回切换了。具体方法可以去看下自己写的博客。  
 
-参考一下方法：
+参考一下方法：  
+bash
+```
 from openai import OpenAI
 
 client = OpenAI(
@@ -44,7 +46,7 @@ response = client.chat.completions.create(
 for chunk in response:
     if chunk.choices:
         print(chunk.choices[0].delta.content, end="", flush=True)
-
+```
 使用下面的命令可以查看指定端口是否可以正常使用：  
 python -m http.server 6006 #测试服务 浏览器可正常打开说明该端口正常  
 
