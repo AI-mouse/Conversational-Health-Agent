@@ -52,6 +52,16 @@ for chunk in response:
 python -m http.server 6006 #测试服务 浏览器可正常打开说明该端口正常
 ```
 
+将autodl中的文件夹打包成zip格式才可以下载到本地：  
+```
+# autodl服务器终端输入以下命令 安装打包相关软件
+apt-get update && apt-get install -y zip
+# 将目标文件夹进行打包，这个将你的result文件夹打包成result.zip
+zip -r result.zip result
+# 如果有多个文件夹，可以合并打包，这里会将文件夹1,2,3全部打包在target文件中
+zip -r target.zip 文件夹1 文件夹2 文件夹3...
+```
+
 ===========
 * [Documentation page](https://docs.opencha.com)
 * [User Guide](https://docs.opencha.com/user_guide/index.html)
