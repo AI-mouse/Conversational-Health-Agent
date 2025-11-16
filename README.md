@@ -141,3 +141,85 @@ This code will run the default interface, and you can access it at the following
 For more examples, visit the [Examples page](https://docs.opencha.com/examples/index.html).
 
 ![Alt Text](https://docs.opencha.com/_images/Interface.png)
+
+
+
+​
+openai Python库（openai）在内部处理了与API的通信，包括API的基础URL。
+
+在使用 openai 库时，默认情况下，它会自动使用OpenAI的官方API URL，通常是 https://api.openai.com/v1/，无需开发者显式指定。
+
+具体来说，openai 库的 OpenAI 类和相关API方法（例如 chat.completions.create）会自动将请求发送到正确的API端点，无需手动指定完整的URL。
+
+如果你想自定义OpenAI的API URL（例如使用代理或其他API端点），openai 库提供了一个配置选项来更改API的基础URL。你可以通过设置 openai.api_base 来更改API的基础URL，如下所示：
+
+import openai
+openai.api_base = "https://your-custom-api-url.com/v1/"
+修改从环境中加载至使用指定中转案例：
+
+原来的代码：
+
+    @model_validator(mode="before")
+    def validate_environment(cls, values: Dict) -> Dict:
+        """
+            Validate that api key and python package exists in environment.
+
+            This method is defined as a validation model for the class and checks the required environment values for using OpenAILLM.
+            If the "openai_api_key" key exists in the input, its value is assigned to the "api_key" variable.
+            Additionally, it checksthe existence of the openai library, and if it's not found, it raises an error.
+
+        Args:
+            cls (type): The class itself.
+            values (Dict): The dictionary containing the values for validation.
+        Return:
+            Dict: The validated dictionary with updated values.
+        Raise:
+            ValueError: If the anthropic python package cannot be imported.
+
+        """
+
+        openai_api_key = get_from_dict_or_env(
+            values, "openai_api_key", "OPENAI_API_KEY"
+        )
+        values["api_key"] = openai_api_key
+        try:
+            from openai import OpenAI
+
+            values["llm_model"] = OpenAI()
+        except ImportError:
+            raise ValueError(
+                "Could not import openai python package. "
+                "Please install it with pip install openai."
+            )
+        return values
+修改之后：
+
+    @model_validator(mode="before")
+    def validate_environment(cls, values: Dict) -> Dict:
+        """
+            Validate that api key and python package exists in environment.
+            ...
+        """
+        # 修改开始: 直接将您的API Key硬编码到代码中
+        # 移除了 get_from_dict_or_env 函数调用
+        openai_api_key = "api-key"
+        values["api_key"] = openai_api_key
+        # 修改结束
+
+        try:
+            from openai import OpenAI
+            
+            values["llm_model"] = OpenAI(
+                api_key=openai_api_key,
+                base_url="https://your-url/v1"
+            )
+
+        except ImportError:
+            raise ValueError(
+                "Could not import openai python package. "
+                "Please install it with `pip install openai`."
+            )
+        return values
+
+
+​
