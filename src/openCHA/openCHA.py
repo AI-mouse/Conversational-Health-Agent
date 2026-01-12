@@ -96,7 +96,7 @@ class openCHA(BaseModel):
         **kwargs
     ):
         os.environ["OPENAI_API_KEY"] = openai_api_key_input
-        os.environ["SEPR_API_KEY"] = serp_api_key_input
+        os.environ["SERPAPI_API_KEY"] = serp_api_key_input
         response = self._run(
             query=message,
             chat_history=chat_history,
